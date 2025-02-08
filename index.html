@@ -91,6 +91,55 @@
         #start-button:hover {
             background-color: #027912;
         }
+
+
+
+
+
+
+                /* تصميم النافذة المنبثقة لعرض النتيجة */
+                .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 400px;
+            background: rgb(255, 255, 255);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .modal h2 {
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .modal p {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ff0000;
+        }
+
+        .modal button {
+            margin-top: 5px;
+            padding: 10px 30px;
+            font-size: 20px;
+            background-color: #0bd71f;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .modal button:hover {
+            background-color: #00a916;
+        }
+
     </style>
 </head>
 <body>
@@ -136,6 +185,16 @@
     <div id="game-board"></div>
     <button id="start-button">Start Game</button>
     <audio id="hit-sound" src="hit-sound.mp3"></audio>
+
+
+
+        <!-- نافذة عرض النتيجة -->
+        <div id="game-over-modal" class="modal">
+            <h2>Game Over !</h2>
+            <p>Your final score: <span id="final-score">0</span></p>
+            <button onclick="closeModal()">OK</button>
+        </div>
+    
 
     <script>
         const gameBoard = document.getElementById('game-board');
@@ -222,6 +281,33 @@
 
         createHoles();
         startButton.addEventListener('click', startGame);
+
+
+
+        function endGame() {
+            clearInterval(gameInterval);
+            if (activeMole) {
+                activeMole.classList.remove('active');
+                activeMole.textContent = '';
+            }
+            activeMole = null;
+            gameRunning = false;
+            startButton.disabled = false;
+
+            // عرض النافذة المنبثقة بالنتيجة
+            document.getElementById('final-score').textContent = score;
+            document.getElementById('game-over-modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('game-over-modal').style.display = 'none';
+        }
+
+
+
+
+
+
     </script>
 </body>
 </html>
