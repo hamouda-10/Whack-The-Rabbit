@@ -12,6 +12,7 @@
 
 
 
+        
         body {
             font-family: Arial, sans-serif;
             display: flex;
@@ -77,27 +78,18 @@
         #start-button {
     margin-top: 30px;
     padding: 12px 25px;
-    font-size: 24px; /* زيادة حجم الخط */
-    font-weight: bold; /* جعل الخط واضحًا وعريضًا */
-    text-transform: uppercase; /* جعل الحروف كبتل لزيادة الوضوح */
+    font-size: 24px; 
+    font-weight: bold; 
+    text-transform: uppercase; 
     background-color: #ff0000;
     color: black;
     border: none;
     border-radius: 100px;
     cursor: pointer;
 }
-
-
         #start-button:hover {
             background-color: #027912;
         }
-
-
-
-
-
-
-                /* تصميم النافذة المنبثقة لعرض النتيجة */
                 .modal {
             display: none;
             position: fixed;
@@ -139,7 +131,23 @@
         .modal button:hover {
             background-color: #00a916;
         }
-
+/* تحسينات للأجهزة الصغيرة */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 6vw;
+    }
+    #game-info {
+        font-size: 3.5vw;
+        gap: 5px;
+    }
+    .hole {
+        width: 18vw;
+        height: 18vw;
+    }
+    #start-button {
+        font-size: 4.5vw;
+    }
+}
     </style>
 </head>
 <body>
@@ -168,15 +176,13 @@
             }
         }
         h1 {
-        margin-bottom: 5px; /* تقليل المسافة بين العنوان الرئيسي والعنوان المزخرف */
+        margin-bottom: 5px; 
     }
     h3 {
-        margin-bottom: 5px; /* تقليل المسافة بين العنوان الرئيسي والعنوان المزخرف */
+        margin-bottom: 5px; 
     }
-       
     </style>
     
-
     <h1>⚫Whack the Rabbit⚫</h1><br>
     <div id="game-info">
         <div>Score: <span id="score">0</span></div>
@@ -186,16 +192,12 @@
     <button id="start-button">Start Game</button>
     <audio id="hit-sound" src="hit-sound.mp3"></audio>
 
-
-
-        <!-- نافذة عرض النتيجة -->
         <div id="game-over-modal" class="modal">
             <h2>Game Over !</h2>
             <p>Your final score: <span id="final-score">0</span></p>
             <button onclick="closeModal()">OK</button>
         </div>
     
-
     <script>
         const gameBoard = document.getElementById('game-board');
         const scoreElement = document.getElementById('score');
@@ -294,7 +296,7 @@
             gameRunning = false;
             startButton.disabled = false;
 
-            // عرض النافذة المنبثقة بالنتيجة
+            
             document.getElementById('final-score').textContent = score;
             document.getElementById('game-over-modal').style.display = 'block';
         }
@@ -302,11 +304,6 @@
         function closeModal() {
             document.getElementById('game-over-modal').style.display = 'none';
         }
-
-
-
-
-
 
     </script>
 </body>
